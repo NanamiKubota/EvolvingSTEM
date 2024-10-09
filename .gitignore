@@ -48,3 +48,7 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Hide tokens and Google Sheets link
+.secrets
+googlesheet_link.txt

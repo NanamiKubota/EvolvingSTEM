@@ -8,9 +8,9 @@ library(shinyvalidate) #validate responses
 library(htmltools)
 library(ggplot2) #plot
 library(googlesheets4) #save input to googlesheet
-library(dplyr)
-library(bslib)
-library(DT)
+library(dplyr) #tidy
+library(bslib) 
+library(DT) #table
 
 #save responses to this googlesheet
 # run this once in RStudio locally:
@@ -39,7 +39,7 @@ link_github <- tags$a(shiny::icon("github"),"See code on GitHub", href = "https:
 ui <- page_navbar(
   title = "EvolvingSTEM",
   theme = bs_theme(preset = "flatly"),
-  tags$head(tags$style(HTML('.bslib-value-box .value-box-value {font-size:18px;}'))),
+  tags$head(tags$style(HTML('.bslib-value-box .value-box-value {font-size:18px;}'))), #font size of warning box
   nav_panel(
     title = "Graph",
     page_sidebar(
@@ -49,9 +49,11 @@ ui <- page_navbar(
         selectizeInput("school", label = "School:", 
                        choices = na.omit(choices_df$school),
                        options = list(placeholder = 'Please select an option below', onInitialize = I('function() { this.setValue(""); }'))),
+        textInput("other_school", "If you selected (Other), please input school name: "),
         selectizeInput("teacher", label = "Teacher:", 
                        choices = na.omit(choices_df$teacher), 
                        options = list(placeholder = 'Please select an option below', onInitialize = I('function() { this.setValue(""); }'))),
+        textInput("other_teacher", "If you selected (Other), please input teacher name: "),
         selectizeInput("class", label = "Class period:", 
                        choices = as.character(seq(1, 12)),
                        options = list(placeholder = 'Please select an option below', onInitialize = I('function() { this.setValue(""); }'))),
@@ -70,8 +72,8 @@ ui <- page_navbar(
       checkboxGroupInput("strain_filter", "Select strain(s) to view graph:", choices = na.omit(choices_df$strain), width = '100%', inline = TRUE),
     navset_tab(
       header = br(),
-      nav_panel("Timecourse", plotOutput(outputId = "dicty_clearing_plot", height = "1500px")),
-      nav_panel("Day 3 vs Day 5", plotOutput(outputId = "clearing_day3day5_plot", height = "1500px")),
+      nav_panel("Timecourse", plotOutput(outputId = "dicty_clearing_plot", height = "600px")),
+      nav_panel("Day 3 vs Day 5", plotOutput(outputId = "clearing_day3day5_plot", height = "600px")),
       nav_panel("Difference", plotOutput(outputId = "clearing_diff_plot", height = "600px")))
     ),
   ),
@@ -88,17 +90,23 @@ ui <- page_navbar(
     title = "Explore",
     page_sidebar(
       sidebar = sidebar(
-        title = "Filter data by school",
+        title = "Filter data",
         width = 300,
-        selectInput("school_filter", label = "School:", 
+        selectInput("school_explore_filter", label = "School:", 
                        choices = c("All schools", "Cooper Lab", na.omit(choices_df$school)), selected = "All schools"),
+        selectInput("teacher_explore_filter", label = "Teachers(s):", 
+                    choices = c("All teachers", na.omit(choices_df$teacher)), selected = "All teachers", multiple = TRUE),
+        selectInput("strain_explore_filter", label = "Strain(s):", 
+                    choices = c("All strains", na.omit(choices_df$strain)), selected = "All strains", multiple = TRUE),
+        selectInput("class_explore_filter", label = "Class period(s):", 
+                    choices = c("All class periods", na.omit(as.character(seq(1, 12)))), selected = "All class periods", multiple = TRUE),
         nav_spacer(),
         "Press the \"Refresh\" button below to grab the most up-to-date data!",
         actionButton("refreshbutton", "Refresh", class = "btn btn-primary ", width = '100%')),
     navset_tab(
       header = br(),
-      nav_panel("Timecourse", plotOutput(outputId = "combined_timecourse_plot", height = "1500px")),
-      nav_panel("Day 3 vs Day 5", plotOutput(outputId = "combined_day3day5_plot", height = "1500px")),
+      nav_panel("Timecourse", plotOutput(outputId = "combined_timecourse_plot", height = "600px")),
+      nav_panel("Day 3 vs Day 5", plotOutput(outputId = "combined_day3day5_plot", height = "600px")),
       nav_panel("Difference", plotOutput(outputId = "combined_diff_plot", height = "600px")),
       nav_panel("Table", DT::dataTableOutput("combined_data_table"))
     ))
@@ -146,12 +154,14 @@ server <- function(input, output, session) {
     if (!iv$is_valid()) {
       
       #set error message
-      error_msg("All required fields on the must be filled before submitting data.")
+      error_msg("All required fields must be filled before submitting data.")
       
     } else {
       #add the new data to the existing data frame
       new_row <- data.frame(school = input$school,
+                            other_school = input$other_school,
                             teacher = input$teacher,
+                            other_teacher = input$other_teacher,
                             class = input$class,
                             name = input$name,
                             date = as.character(as.Date(input$date)),
@@ -242,15 +252,6 @@ server <- function(input, output, session) {
     )
   })
   
-  # 
-  # output$strain_message <- renderText({
-  #   if (length(input$strain_filter) > 1){
-  #     paste("Strains selected: ", input$strain_filter)
-  #   }else{
-  #     paste("Caution: no strains selected.")
-  #   }
-  # })
-  
   #reactive expression to filter by strain (graph tab)
   filtered_strain <- reactive({
     req(input$strain_filter)
@@ -266,17 +267,19 @@ server <- function(input, output, session) {
     req(nrow(filtered_strain()) > 0)
     
     ggplot(filtered_strain(), aes(x = as.numeric(hour), y = area, fill = submission, group = submission)) +
-      geom_point(size=5, shape=21, color="black", alpha=0.5) +
-      stat_summary(geom = "line", fun.y = mean, color="black") +
+      stat_summary(geom = "line", fun.y = mean, aes(color=submission), size=2) +
+      geom_point(size=3, shape=21, color="black", alpha=0.5) +
       scale_x_continuous(breaks = c(72,96,120)) +
-      facet_wrap(vars(strain), ncol = 2, axes = "all_x")+
+      facet_wrap(vars(strain), axes = "all_x")+
+      scale_color_manual(values = c("grey","red"))+
       scale_fill_manual(values = c("grey","red"))+
       labs(
         title = "Dicty clearing over time",
         x = "Hours", 
         y = bquote("Area"~(cm^2)), 
         fill = "Submission") +
-      theme_bw(base_size = 24)+
+      guides(color = "none")+
+      theme_bw(base_size = 18)+
       theme(legend.position = "top",
             plot.title = element_text(hjust = 0.5))
   })
@@ -298,15 +301,16 @@ server <- function(input, output, session) {
     
     ggplot(filtered_data(), aes(x = as.factor(hour), y = area)) +
       geom_boxplot(aes(fill = submission), position = position_dodge(width = 0.9))+
-      geom_point(aes(fill = submission), size=3, shape=21, alpha=0.5, color="black", position = position_jitterdodge(jitter.width = 0.25)) +
-      stat_summary(fun=base::mean, aes(group=submission), geom="point", size=5, shape=23, color="black", fill="black", position = position_dodge(width = 0.9)) +
-      facet_wrap(vars(strain), ncol=2, axes = "all_x")+
+      geom_point(aes(fill = submission), size=3, shape=21, alpha=0.5, color="black", position=position_jitterdodge(dodge.width=0.9, jitter.width = 0.1)) +
+      stat_summary(fun=base::mean, aes(group=submission), geom="point", size=3, shape=23, color="black", fill="black", position = position_dodge(width = 0.9)) +
+      facet_wrap(vars(strain), axes = "all_x")+
       scale_fill_manual(values = c("grey","red"))+
       labs(
-        title = "Day 3 Area vs Day 5 Area",
+        title = "Amount of Dicty Predation",
         x = "Hours", y = bquote("Area"~(cm^2)), fill = "Submission") +
-      theme_bw(base_size = 24) +
+      theme_bw(base_size = 18) +
       theme(legend.position = "top",
+            legend.title = element_text(size = 14),
             plot.title = element_text(hjust = 0.5))
   })
     
@@ -333,14 +337,15 @@ server <- function(input, output, session) {
     
     ggplot(filtered_diff_data(), aes(x = strain, y = area_difference)) +
       geom_boxplot(aes(fill = submission), position = position_dodge(width = 0.9))+
-      geom_point(aes(fill = submission),size=3, shape=21, alpha=0.5, color="black", position = position_jitterdodge(jitter.width = 0.25)) +
-      stat_summary(fun=base::mean, aes(group=submission), geom="point", size=5, shape=23, color="black", fill="black", position = position_dodge(width = 0.9)) +
+      geom_point(aes(fill = submission),size=3, shape=21, alpha=0.5, color="black", position=position_jitterdodge(dodge.width=0.9, jitter.width = 0.1)) +
+      stat_summary(fun=base::mean, aes(group=submission), geom="point", size=3, shape=23, color="black", fill="black", position = position_dodge(width = 0.9)) +
       scale_fill_manual(values = c("grey","red"))+
       labs(
-        title = "Difference between Day 3 and Day 5", 
+        title = "Amount of Dicty clearing from Day 3 to Day 5", 
         x = "Strains", y = bquote("Difference in Area between Day 3 and 5"~(cm^2)), fill = "Submission") +
-      theme_bw(base_size = 24) +
+      theme_bw(base_size = 18) +
       theme(legend.position = "top",
+            legend.title = element_text(size = 14),
             plot.title = element_text(hjust = 0.5))
   })
     
@@ -431,43 +436,65 @@ server <- function(input, output, session) {
                    df3 <- combined_data_diff 
                    
                    #filter by school if a specific one is selected
-                   if (input$school_filter != "All schools") {
-                     df1 <- df1 %>% filter(school == input$school_filter) 
-                     df2 <- df2 %>% filter(school == input$school_filter)
-                     df3 <- df3 %>% filter(school == input$school_filter)
+                   if (input$school_explore_filter != "All schools") {
+                     df1 <- df1 %>% filter(school == input$school_explore_filter) 
+                     df2 <- df2 %>% filter(school == input$school_explore_filter)
+                     df3 <- df3 %>% filter(school == input$school_explore_filter)
+                   }
+                   #filter by strain if a specific one is selected
+                   if (!("All strains" %in% input$strain_explore_filter)) {
+                     df1 <- df1 %>% filter(strain %in% input$strain_explore_filter) 
+                     df2 <- df2 %>% filter(strain %in% input$strain_explore_filter) 
+                     df3 <- df3 %>% filter(strain %in% input$strain_explore_filter) 
+                   }
+                   if (!("All teachers" %in% input$teacher_explore_filter)) {
+                     df1 <- df1 %>% filter(teacher %in% input$teacher_explore_filter) 
+                     df2 <- df2 %>% filter(teacher %in% input$teacher_explore_filter) 
+                     df3 <- df3 %>% filter(teacher %in% input$teacher_explore_filter) 
+                   }
+                   if (!("All class periods" %in% input$class_explore_filter)) {
+                     df1 <- df1 %>% filter(class %in% input$class_explore_filter) 
+                     df2 <- df2 %>% filter(class %in% input$class_explore_filter) 
+                     df3 <- df3 %>% filter(class %in% input$class_explore_filter) 
                    }
                    return(list(df1 = df1, df2 = df2, df3 = df3))
                  })
                  
                  output$combined_timecourse_plot <- renderPlot({
                    ggplot(filtered_school()$df1, aes(x = as.numeric(hour), y = area, fill = school, group = school, color = school)) +
-                     geom_point(size=5, shape=21, color="black", alpha=0.5) +
-                     stat_summary(geom = "line", fun.y = mean) +
+                     stat_summary(geom = "line", fun.y = mean, size=2) +
+                     geom_point(size=3, shape=21, color="black", alpha=0.5) +
                      scale_x_continuous(breaks = c(72,96,120))+
-                     facet_wrap(vars(strain), ncol = 2, axes = "all_x")+
+                     facet_wrap(vars(strain), axes = "all_x")+
                      # scale_fill_manual(values = c("grey","red"))+
                      labs(
                        title = "Dicty clearing over time", 
                        x = "Hours", y = bquote("Area"~(cm^2)), fill = "Schools") +
-                     theme_bw(base_size = 24) +
-                     guides(colour = "none")+
+                     theme_bw(base_size = 18) +
+                     guides(color = "none",
+                            fill = guide_legend(nrow = 1))+
                      theme(legend.position = "top",
+                           legend.title = element_blank(),
+                           legend.text = element_text(size = 12),
                            plot.title = element_text(hjust = 0.5))
                  })
                  
                  output$combined_day3day5_plot <- renderPlot({
                    ggplot(filtered_school()$df2, aes(x = as.factor(hour), y = area)) +
                      geom_boxplot(aes(fill = school), position = position_dodge(width = 0.9))+
-                     geom_point(aes(fill = school), size=3, shape=21, alpha=0.5, color="black", position = position_jitterdodge(jitter.width = 0.25)) +
-                     stat_summary(fun=base::mean, aes(group=school), geom="point", size=5, shape=23, color="black", fill="black", position = position_dodge(width = 0.9)) +
-                     facet_wrap(vars(strain), ncol = 2, axes = "all_x")+
+                     geom_point(aes(fill = school), size=3, shape=21, alpha=0.5, color="black", position=position_jitterdodge(dodge.width=0.9, jitter.width = 0.1)) +
+                     stat_summary(fun=base::mean, aes(group=school), geom="point", size=3, shape=23, color="black", fill="black", position = position_dodge(width = 0.9)) +
+                     facet_wrap(vars(strain), axes = "all_x")+
                      # scale_fill_manual(values = c("grey","red"))+
                      labs(
-                       title = "Day 3 Area vs Day 5 Area", 
+                       title = "Amount of Dicty Predation", 
                        x = "Hours", y = bquote("Area"~(cm^2)), fill = "School") +
-                     theme_bw(base_size = 24) +
-                     guides(colour = "none") +
+                     theme_bw(base_size = 18) +
+                     guides(colour = "none",
+                            fill = guide_legend(nrow = 1)) +
                      theme(legend.position = "top",
+                           legend.title = element_blank(),
+                           legend.text = element_text(size = 12),
                            plot.title = element_text(hjust = 0.5))
                  })
                  
@@ -475,14 +502,17 @@ server <- function(input, output, session) {
                  output$combined_diff_plot <- renderPlot({
                    ggplot(filtered_school()$df3, aes(x = as.factor(strain), y = area_difference)) +
                      geom_boxplot(aes(fill = school), position = position_dodge(width = 0.9))+
-                     geom_point(aes(fill = school),size=3, shape=21, alpha=0.5, color="black", position = position_jitterdodge(jitter.width = 0.25)) +
-                     stat_summary(fun=base::mean, aes(group=school), geom="point", size=5, shape=23, color="black", fill="black", position = position_dodge(width = 0.9)) +
+                     geom_point(aes(fill = school),size=3, shape=21, alpha=0.5, color="black", position=position_jitterdodge(dodge.width=0.9, jitter.width = 0.1)) +
+                     stat_summary(fun=base::mean, aes(group=school), geom="point", size=3, shape=23, color="black", fill="black", position = position_dodge(width = 0.9)) +
                      labs(
-                       title = "Difference between Day 3 and Day 5", 
+                       title = "Amount of Dicty clearing from Day 3 to Day 5", 
                        x = "Strains", y = bquote("Difference in Area between Day 3 and 5"~(cm^2)), fill = "School") +
-                     theme_bw(base_size = 24) +
-                     guides(colour = "none") +
+                     theme_bw(base_size = 18) +
+                     guides(colour = "none",
+                            fill = guide_legend(nrow = 1)) +
                      theme(legend.position = "top",
+                           legend.title = element_blank(),
+                           legend.text = element_text(size = 12),
                            plot.title = element_text(hjust = 0.5))
                  })
                  

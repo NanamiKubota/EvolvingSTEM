@@ -1,97 +1,97 @@
-"school","teacher","class","name","date","strain","hour","replicate","area"
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Ancestor","72","1",6.517
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Ancestor","72","2",7.212
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Ancestor","72","3",4.398
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Wrinkly A","72","1",2.094
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Wrinkly A","72","2",2.245
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Wrinkly A","72","3",2.256
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Fuzzy A","72","1",6.887
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Fuzzy A","72","2",7.072
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Fuzzy A","72","3",7.206
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Copycat","72","1",7.088
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Copycat","72","2",7.966
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Copycat","72","3",6.944
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Ancestor","96","1",14.397
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Ancestor","96","2",17.494
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Ancestor","96","3",8.982
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Wrinkly A","96","1",2.866
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Wrinkly A","96","2",3.839
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Wrinkly A","96","3",3.713
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Fuzzy A","96","1",11.781
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Fuzzy A","96","2",11.472
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Fuzzy A","96","3",13.718
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Copycat","96","1",13.957
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Copycat","96","2",17.555
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Copycat","96","3",12.79
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Ancestor","120","1",26.281
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Ancestor","120","2",32.179
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Ancestor","120","3",16.82
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Wrinkly A","120","1",4.943
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Wrinkly A","120","2",5.507
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Wrinkly A","120","3",5.404
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Fuzzy A","120","1",18.193
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Fuzzy A","120","2",17.015
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Fuzzy A","120","3",21.157
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Copycat","120","1",23.275
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Copycat","120","2",29.385
-"Cooper Lab",NA,NA,"Changhua Yan","2024-02-28","Copycat","120","3",22.123
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Ancestor","72","1",6.1
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Ancestor","96","1",10.6
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Ancestor","120","1",20.9
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Ancestor","72","2",8.4
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Ancestor","96","2",19.7
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Ancestor","120","2",30.3
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Ancestor","72","3",9
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Ancestor","96","3",13.4
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Ancestor","120","3",20.7
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Copycat","72","1",8.9
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Copycat","96","1",23.4
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Copycat","120","1",30.5
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Copycat","72","2",12.7
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Copycat","96","2",20.4
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Copycat","120","2",28.3
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Fuzzy A","72","1",5.9
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Fuzzy A","96","1",13.4
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Fuzzy A","120","1",20.8
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Fuzzy A","72","2",6.5
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Fuzzy A","96","2",10.6
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Fuzzy A","120","2",12.6
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Fuzzy A","72","3",5.1
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Fuzzy A","96","3",9.9
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Fuzzy A","120","3",13.9
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Fuzzy A","72","4",4.5
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Fuzzy A","96","4",10.5
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Fuzzy A","120","4",18.5
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Mucoid A","72","1",17.8
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Mucoid A","96","1",27
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Mucoid A","120","1",29.9
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Mucoid A","72","2",5.2
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Mucoid A","96","2",8.5
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Mucoid A","120","2",15.7
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Mucoid A","72","3",5.5
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Mucoid A","96","3",11.4
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Mucoid A","120","3",25.25
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Mucoid A","72","4",7.3
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Mucoid A","96","4",14.2
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Mucoid A","120","4",24.14
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Tiny A","72","1",7.5
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Tiny A","96","1",12.4
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Tiny A","120","1",40.4
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Tiny A","72","2",13.8
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Tiny A","96","2",19.6
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Tiny A","120","2",28.72
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly A","72","1",2.4
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly A","96","1",2.8
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly A","120","1",4
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly A","72","2",2.2
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly A","96","2",2.8
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly A","120","2",5.7
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly B","72","1",4.2
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly B","96","1",8.2
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly B","120","1",12.3
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly B","72","2",6.7
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly B","96","2",10.8
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly B","120","2",21
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly B","72","3",4.9
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly B","96","3",7.9
-"CAPA",NA,NA,"Karie Suhajda","2024-05-30","Wrinkly B","120","3",13.1
+school,other_school,teacher,other_teacher,class,name,date,strain,hour,replicate,area
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Ancestor,72,1,6.517
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Ancestor,72,2,7.212
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Ancestor,72,3,4.398
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Wrinkly A,72,1,2.094
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Wrinkly A,72,2,2.245
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Wrinkly A,72,3,2.256
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Fuzzy A,72,1,6.887
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Fuzzy A,72,2,7.072
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Fuzzy A,72,3,7.206
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Copycat,72,1,7.088
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Copycat,72,2,7.966
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Copycat,72,3,6.944
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Ancestor,96,1,14.397
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Ancestor,96,2,17.494
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Ancestor,96,3,8.982
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Wrinkly A,96,1,2.866
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Wrinkly A,96,2,3.839
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Wrinkly A,96,3,3.713
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Fuzzy A,96,1,11.781
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Fuzzy A,96,2,11.472
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Fuzzy A,96,3,13.718
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Copycat,96,1,13.957
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Copycat,96,2,17.555
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Copycat,96,3,12.79
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Ancestor,120,1,26.281
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Ancestor,120,2,32.179
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Ancestor,120,3,16.82
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Wrinkly A,120,1,4.943
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Wrinkly A,120,2,5.507
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Wrinkly A,120,3,5.404
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Fuzzy A,120,1,18.193
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Fuzzy A,120,2,17.015
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Fuzzy A,120,3,21.157
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Copycat,120,1,23.275
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Copycat,120,2,29.385
+Cooper Lab,,NA,,NA,Changhua Yan,2/28/24,Copycat,120,3,22.123
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Ancestor,72,1,6.1
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Ancestor,96,1,10.6
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Ancestor,120,1,20.9
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Ancestor,72,2,8.4
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Ancestor,96,2,19.7
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Ancestor,120,2,30.3
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Ancestor,72,3,9
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Ancestor,96,3,13.4
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Ancestor,120,3,20.7
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Copycat,72,1,8.9
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Copycat,96,1,23.4
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Copycat,120,1,30.5
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Copycat,72,2,12.7
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Copycat,96,2,20.4
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Copycat,120,2,28.3
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Fuzzy A,72,1,5.9
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Fuzzy A,96,1,13.4
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Fuzzy A,120,1,20.8
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Fuzzy A,72,2,6.5
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Fuzzy A,96,2,10.6
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Fuzzy A,120,2,12.6
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Fuzzy A,72,3,5.1
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Fuzzy A,96,3,9.9
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Fuzzy A,120,3,13.9
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Fuzzy A,72,4,4.5
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Fuzzy A,96,4,10.5
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Fuzzy A,120,4,18.5
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Mucoid A,72,1,17.8
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Mucoid A,96,1,27
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Mucoid A,120,1,29.9
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Mucoid A,72,2,5.2
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Mucoid A,96,2,8.5
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Mucoid A,120,2,15.7
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Mucoid A,72,3,5.5
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Mucoid A,96,3,11.4
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Mucoid A,120,3,25.25
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Mucoid A,72,4,7.3
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Mucoid A,96,4,14.2
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Mucoid A,120,4,24.14
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Tiny A,72,1,7.5
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Tiny A,96,1,12.4
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Tiny A,120,1,40.4
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Tiny A,72,2,13.8
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Tiny A,96,2,19.6
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Tiny A,120,2,28.72
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly A,72,1,2.4
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly A,96,1,2.8
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly A,120,1,4
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly A,72,2,2.2
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly A,96,2,2.8
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly A,120,2,5.7
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly B,72,1,4.2
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly B,96,1,8.2
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly B,120,1,12.3
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly B,72,2,6.7
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly B,96,2,10.8
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly B,120,2,21
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly B,72,3,4.9
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly B,96,3,7.9
+CAPA,,NA,,NA,Karie Suhajda,5/30/24,Wrinkly B,120,3,13.1

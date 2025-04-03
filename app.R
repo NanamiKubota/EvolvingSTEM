@@ -65,6 +65,7 @@ ui <- page_navbar(
         selectizeInput("hour", "Hours since starting experiment:", hours, options = list(placeholder = 'Please select an option below', onInitialize = I('function() { this.setValue(""); }'))),
         numericInput("replicate", "Biological replicate number", min = 1, max = NA, value = NULL, step = 1),
         numericInput("area", "Dicty area cleared (cm²):", min = 1, max = 56.75, value = NULL, step = 0.01),
+        numericInput("temperature", "Temperature (Celsius):", min = 10, max = 40, value = NULL, step = 1),
         
         actionButton("submitbutton", "Submit", class = "btn btn-danger ", width = '100%')
       ),
@@ -168,7 +169,8 @@ server <- function(input, output, session) {
                             strain = input$strain, 
                             hour = as.numeric(input$hour),
                             replicate = input$replicate,
-                            area = as.numeric(input$area), 
+                            area = as.numeric(input$area),
+                            temperature = as.numeric(input$temperature),
                             submission="your data")
       new_row$timestamp <- format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z")
       reactive_data$data <- rbind(new_row, reactive_data$data)

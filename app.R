@@ -25,7 +25,7 @@ ss <- readLines("googlesheet_link.txt")
 # lists
 choices_df <- read.csv("survey_choices.csv",stringsAsFactors = FALSE, na.strings = "")
 
-hours <- c("72", "96", "120")
+hours <- c("72", "96", "120", "144", "168")
 
 past_data_df <- read.csv("combined_data_cleanR.csv")
 past_data_df$submission <- "other people"
@@ -35,6 +35,16 @@ past_data_df$timestamp <- NA
 #github link
 link_github <- tags$a(shiny::icon("github"),"See code on GitHub", href = "https://github.com/NanamiKubota/EvolvingSTEM", target = "_blank")
 
+#text in page header
+header_text <- tags$div(
+  tags$span(
+    "Made by ",
+    a("Nanami Kubota", href = "https://www.nanamikubota.com", target = "_blank", class = "text-light"),
+    " using R Shiny",
+    class = "text-light"
+  )
+)
+
 #user interface
 ui <- page_navbar(
   title = "EvolvingSTEM",
@@ -42,7 +52,7 @@ ui <- page_navbar(
   tags$head(tags$style(HTML('.bslib-value-box .value-box-value {font-size:18px;}'))), #font size of warning box
   nav_panel(
     title = "Graph",
-    page_sidebar(
+    layout_sidebar(
       sidebar = sidebar(
         title = "Input your data!",
         width = 300,
@@ -55,7 +65,7 @@ ui <- page_navbar(
                        options = list(placeholder = 'Please select an option below', onInitialize = I('function() { this.setValue(""); }'))),
         textInput("other_teacher", "If you selected (Other), please input teacher name: "),
         selectizeInput("class", label = "Class period:", 
-                       choices = as.character(seq(1, 12)),
+                       choices = as.character(seq(1, 12), "A", "B"),
                        options = list(placeholder = 'Please select an option below', onInitialize = I('function() { this.setValue(""); }'))),
         textInput("name", "Your name:"),
         dateInput("date", "Date of entry:",format = "yyyy-mm-dd"),
@@ -64,9 +74,10 @@ ui <- page_navbar(
                        options = list(placeholder = 'Please select an option below', onInitialize = I('function() { this.setValue(""); }'))),
         selectizeInput("hour", "Hours since starting experiment:", hours, options = list(placeholder = 'Please select an option below', onInitialize = I('function() { this.setValue(""); }'))),
         numericInput("replicate", "Biological replicate number", min = 1, max = NA, value = NULL, step = 1),
+        numericInput("diameter", "Dicty diameter cleared (cm):", min = 1, max = 15, value = NULL, step = 0.01),
         numericInput("area", "Dicty area cleared (cm²):", min = 1, max = 56.75, value = NULL, step = 0.01),
         numericInput("temperature", "Temperature (Celsius):", min = 10, max = 40, value = NULL, step = 1),
-        
+        numericInput("humidity", "Humidity (%):", min = 0, max = 100, value = NULL, step = 1),
         actionButton("submitbutton", "Submit", class = "btn btn-danger ", width = '100%')
       ),
       uiOutput("contents", fill=TRUE),
@@ -89,7 +100,7 @@ ui <- page_navbar(
   ),
   nav_panel(
     title = "Explore",
-    page_sidebar(
+    layout_sidebar(
       sidebar = sidebar(
         title = "Filter data",
         width = 300,
@@ -113,7 +124,7 @@ ui <- page_navbar(
     ))
   ),
   nav_spacer(),
-  nav_item(tags$div(tags$span("Made by Nanami Kubota using R Shiny"))),
+  nav_item(header_text),
   nav_item(link_github)
 
 )
@@ -132,6 +143,8 @@ server <- function(input, output, session) {
   iv$add_rule("hour", sv_required())
   iv$add_rule("replicate", sv_required())
   iv$add_rule("replicate", sv_integer())
+  iv$add_rule("diameter", sv_required())
+  iv$add_rule("diameter", sv_between(1, 15))
   iv$add_rule("area", sv_required())
   iv$add_rule("area", sv_between(1, 56.75))
   iv$add_rule("strain_filter", sv_required())
@@ -169,8 +182,10 @@ server <- function(input, output, session) {
                             strain = input$strain, 
                             hour = as.numeric(input$hour),
                             replicate = input$replicate,
+                            diameter = as.numeric(input$diameter),
                             area = as.numeric(input$area),
                             temperature = as.numeric(input$temperature),
+                            humidity = as.numeric(input$humidity),
                             submission="your data")
       new_row$timestamp <- format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z")
       reactive_data$data <- rbind(new_row, reactive_data$data)
@@ -269,9 +284,9 @@ server <- function(input, output, session) {
     req(nrow(filtered_strain()) > 0)
     
     ggplot(filtered_strain(), aes(x = as.numeric(hour), y = area, fill = submission, group = submission)) +
-      stat_summary(geom = "line", fun.y = mean, aes(color=submission), size=2) +
+      stat_summary(geom = "line", fun=base::mean, aes(color=submission), linewidth=2) +
       geom_point(size=3, shape=21, color="black", alpha=0.5) +
-      scale_x_continuous(breaks = c(72,96,120)) +
+      scale_x_continuous(breaks = c(72,96,120,144,168)) +
       facet_wrap(vars(strain), axes = "all_x")+
       scale_color_manual(values = c("grey","red"))+
       scale_fill_manual(values = c("grey","red"))+
@@ -464,7 +479,7 @@ server <- function(input, output, session) {
                  
                  output$combined_timecourse_plot <- renderPlot({
                    ggplot(filtered_school()$df1, aes(x = as.numeric(hour), y = area, fill = school, group = school, color = school)) +
-                     stat_summary(geom = "line", fun.y = mean, size=2) +
+                     stat_summary(geom = "line", fun=base::mean, linewidth=2) +
                      geom_point(size=3, shape=21, color="black", alpha=0.5) +
                      scale_x_continuous(breaks = c(72,96,120))+
                      facet_wrap(vars(strain), axes = "all_x")+
